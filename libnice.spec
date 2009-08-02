@@ -1,11 +1,11 @@
 Summary:	The GLib ICE implementation
 Name:		libnice
-Version:	0.0.8
+Version:	0.0.9
 Release:	1
 License:	LGPL v2 and MPL v1.1
 Group:		Libraries
 Source0:	http://nice.freedesktop.org/releases/%{name}-%{version}.tar.gz
-# Source0-md5:	53ef2dea810d5b9e0cde5a55640a1f42
+# Source0-md5:	19ac2565ee7487c1f32487b948110b19
 URL:		http://nice.freedesktop.org/
 BuildRequires:	autoconf >= 2.60
 BuildRequires:	automake
