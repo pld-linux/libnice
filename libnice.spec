@@ -9,6 +9,7 @@ Source0:	http://nice.freedesktop.org/releases/%{name}-%{version}.tar.gz
 URL:		http://nice.freedesktop.org/
 BuildRequires:	autoconf >= 2.60
 BuildRequires:	automake
+BuildRequires:	docbook-dtd412-xml
 BuildRequires:	glib2-devel >= 1:2.10.0
 BuildRequires:	gstreamer-devel >= 0.10.0
 BuildRequires:	gstreamer-plugins-base-devel >= 0.10.0
