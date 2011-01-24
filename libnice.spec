@@ -1,11 +1,11 @@
 Summary:	The GLib ICE implementation
 Name:		libnice
-Version:	0.0.13
+Version:	0.1.0
 Release:	1
 License:	LGPL v2 and MPL v1.1
 Group:		Libraries
 Source0:	http://nice.freedesktop.org/releases/%{name}-%{version}.tar.gz
-# Source0-md5:	e5b9f799a57cb939ea2658ec35253ab9
+# Source0-md5:	c077e2aa74c9afb4b4e157efc8a6ad9d
 URL:		http://nice.freedesktop.org/
 BuildRequires:	autoconf >= 2.60
 BuildRequires:	automake
@@ -105,7 +105,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/stunbdc
 %attr(755,root,root) %{_bindir}/stund
 %attr(755,root,root) %{_libdir}/libnice.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libnice.so.0
+%attr(755,root,root) %ghost %{_libdir}/libnice.so.10
 %attr(755,root,root) %{_libdir}/gstreamer-0.10/libgstnice.so
 
 %files devel
