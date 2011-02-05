@@ -1,8 +1,9 @@
-Summary:	The GLib ICE implementation
+Summary:	The GLib ICE (Interactive Connectivity Establishment) implementation
+Summary(pl.UTF-8):	Implementacja ICE (Interactive Connectivity Establishment) oparta o GLib
 Name:		libnice
 Version:	0.1.0
 Release:	1
-License:	LGPL v2 and MPL v1.1
+License:	LGPL v2.1 or MPL v1.1
 Group:		Libraries
 Source0:	http://nice.freedesktop.org/releases/%{name}-%{version}.tar.gz
 # Source0-md5:	c077e2aa74c9afb4b4e157efc8a6ad9d
@@ -10,13 +11,14 @@ URL:		http://nice.freedesktop.org/
 BuildRequires:	autoconf >= 2.60
 BuildRequires:	automake
 BuildRequires:	docbook-dtd412-xml
-BuildRequires:	glib2-devel >= 1:2.10.0
+BuildRequires:	glib2-devel >= 1:2.10
 BuildRequires:	gstreamer-devel >= 0.10.0
-BuildRequires:	gstreamer-plugins-base-devel >= 0.10.0
 BuildRequires:	gtk-doc >= 1.9
 BuildRequires:	gupnp-igd-devel >= 0.1.2
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
+Requires:	glib2 >= 1:2.10
+Requires:	gupnp-igd >= 0.1.2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -31,12 +33,26 @@ security against some attacks.
 Existing standards that use ICE include the Session Initiation
 Protocol (SIP) and Jingle, XMPP extension for audio/video calls.
 
+%description -l pl.UTF-8
+libnice to implementacja standardu ICE (Interactive Connectivity
+Establishment) wg szkicu IETF. Udostępnia bibliotekę opartą na
+GLibie oraz elementy GStreamera.
+
+ICE służy aplikacjom chcącym tworzyć strumienie danych UDP
+peer-to-peer. Automatyzuje proces przechodzenia przez NAT i
+zabezpiecza przed pewnymi atakami.
+
+Istniejące standardy wykorzystujące ICE obejmują protokoły SIP
+(Session Initiation Protocol) oraz Jingle (rozszerzenie XMPP dla
+połączeń audio/video).
+
 %package devel
 Summary:	Header files for libnice library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki libnice
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.10.0
+Requires:	glib2-devel >= 1:2.10
+Requires:	gupnp-igd-devel >= 0.1.2
 
 %description devel
 Header files for libnice library.
@@ -80,6 +96,7 @@ mkdir m4
 %{__autoheader}
 %{__automake}
 %configure \
+	--disable-silent-rules \
 	--enable-gtk-doc \
 	--with-html-dir=%{_gtkdocdir}
 
@@ -101,7 +118,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog NEWS README
+%doc AUTHORS COPYING ChangeLog NEWS README TODO
 %attr(755,root,root) %{_bindir}/stunbdc
 %attr(755,root,root) %{_bindir}/stund
 %attr(755,root,root) %{_libdir}/libnice.so.*.*.*
