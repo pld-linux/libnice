@@ -1,12 +1,12 @@
 Summary:	The GLib ICE (Interactive Connectivity Establishment) implementation
 Summary(pl.UTF-8):	Implementacja ICE (Interactive Connectivity Establishment) oparta o GLib
 Name:		libnice
-Version:	0.1.0
+Version:	0.1.1
 Release:	1
 License:	LGPL v2.1 or MPL v1.1
 Group:		Libraries
 Source0:	http://nice.freedesktop.org/releases/%{name}-%{version}.tar.gz
-# Source0-md5:	c077e2aa74c9afb4b4e157efc8a6ad9d
+# Source0-md5:	0906c3523eb78cb3caad170cc75af4b0
 URL:		http://nice.freedesktop.org/
 BuildRequires:	autoconf >= 2.60
 BuildRequires:	automake
