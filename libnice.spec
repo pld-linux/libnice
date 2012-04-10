@@ -1,23 +1,23 @@
 Summary:	The GLib ICE (Interactive Connectivity Establishment) implementation
 Summary(pl.UTF-8):	Implementacja ICE (Interactive Connectivity Establishment) oparta o GLib
 Name:		libnice
-Version:	0.1.1
-Release:	2
+Version:	0.1.2
+Release:	1
 License:	LGPL v2.1 or MPL v1.1
 Group:		Libraries
 Source0:	http://nice.freedesktop.org/releases/%{name}-%{version}.tar.gz
-# Source0-md5:	0906c3523eb78cb3caad170cc75af4b0
+# Source0-md5:	1914dd98380dd68632d3d448cc23f1e8
 URL:		http://nice.freedesktop.org/
 BuildRequires:	autoconf >= 2.60
 BuildRequires:	automake
 BuildRequires:	docbook-dtd412-xml
-BuildRequires:	glib2-devel >= 1:2.10
+BuildRequires:	glib2-devel >= 1:2.13
 BuildRequires:	gstreamer-devel >= 0.10.0
 BuildRequires:	gtk-doc >= 1.9
 BuildRequires:	gupnp-igd-devel >= 0.1.2
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
-Requires:	glib2 >= 1:2.10
+Requires:	glib2 >= 1:2.13
 Requires:	gupnp-igd >= 0.1.2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -51,7 +51,7 @@ Summary:	Header files for libnice library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki libnice
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.10
+Requires:	glib2-devel >= 1:2.13
 Requires:	gupnp-igd-devel >= 0.1.2
 
 %description devel
