@@ -1,12 +1,13 @@
+# NOTE: gstreamer 1.0 is also supported
 Summary:	The GLib ICE (Interactive Connectivity Establishment) implementation
 Summary(pl.UTF-8):	Implementacja ICE (Interactive Connectivity Establishment) oparta o GLib
 Name:		libnice
-Version:	0.1.2
+Version:	0.1.3
 Release:	1
 License:	LGPL v2.1 or MPL v1.1
 Group:		Libraries
 Source0:	http://nice.freedesktop.org/releases/%{name}-%{version}.tar.gz
-# Source0-md5:	1914dd98380dd68632d3d448cc23f1e8
+# Source0-md5:	1a0907605f852dcda32a3b3daf38d36c
 URL:		http://nice.freedesktop.org/
 BuildRequires:	autoconf >= 2.60
 BuildRequires:	automake
@@ -84,6 +85,19 @@ libnice library API documentation.
 %description apidocs -l pl.UTF-8
 Dokumentacja API biblioteki libnice.
 
+%package -n gstreamer-nice
+Summary:	ICE source plugin for GStreamer
+Summary(pl.UTF-8):	Wtyczka źródła ICE dla GStreamera
+Group:		Libraries
+Requires:	%{name} = %{version}-%{release}
+Requires:	gstreamer >= 0.10.0
+
+%description -n gstreamer-nice
+ICE source plugin for GStreamer.
+
+%description -n gstreamer-nice -l pl.UTF-8
+Wtyczka źródła ICE dla GStreamera.
+
 %prep
 %setup -q
 
@@ -124,7 +138,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/stund
 %attr(755,root,root) %{_libdir}/libnice.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libnice.so.10
-%attr(755,root,root) %{_libdir}/gstreamer-0.10/libgstnice.so
 
 %files devel
 %defattr(644,root,root,755)
@@ -140,3 +153,7 @@ rm -rf $RPM_BUILD_ROOT
 %files apidocs
 %defattr(644,root,root,755)
 %{_gtkdocdir}/libnice
+
+%files -n gstreamer-nice
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/gstreamer-0.10/libgstnice010.so
