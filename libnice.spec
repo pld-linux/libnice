@@ -1,4 +1,3 @@
-# NOTE: gstreamer 1.0 is also supported
 Summary:	The GLib ICE (Interactive Connectivity Establishment) implementation
 Summary(pl.UTF-8):	Implementacja ICE (Interactive Connectivity Establishment) oparta o GLib
 Name:		libnice
@@ -13,7 +12,7 @@ BuildRequires:	autoconf >= 2.60
 BuildRequires:	automake
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	glib2-devel >= 1:2.13
-BuildRequires:	gstreamer-devel >= 0.10.0
+BuildRequires:	gstreamer-devel >= 1.0.0
 BuildRequires:	gtk-doc >= 1.9
 BuildRequires:	gupnp-igd-devel >= 0.1.2
 BuildRequires:	libtool
@@ -90,7 +89,7 @@ Summary:	ICE source plugin for GStreamer
 Summary(pl.UTF-8):	Wtyczka źródła ICE dla GStreamera
 Group:		Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	gstreamer >= 0.10.0
+Requires:	gstreamer >= 1.0.0
 
 %description -n gstreamer-nice
 ICE source plugin for GStreamer.
@@ -112,7 +111,8 @@ mkdir m4
 %configure \
 	--disable-silent-rules \
 	--enable-gtk-doc \
-	--with-html-dir=%{_gtkdocdir}
+	--with-html-dir=%{_gtkdocdir} \
+	--without-gstreamer-0.10
 
 %{__make}
 
@@ -122,7 +122,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/gstreamer-0.10/*.{a,la}
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/gstreamer-1.0/*.{a,la}
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
 
 %clean
@@ -156,4 +156,4 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n gstreamer-nice
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/gstreamer-0.10/libgstnice010.so
+%attr(755,root,root) %{_libdir}/gstreamer-1.0/libgstnice.so
