@@ -1,12 +1,12 @@
 Summary:	The GLib ICE (Interactive Connectivity Establishment) implementation
 Summary(pl.UTF-8):	Implementacja ICE (Interactive Connectivity Establishment) oparta o GLib
 Name:		libnice
-Version:	0.1.4
-Release:	2
+Version:	0.1.5
+Release:	1
 License:	LGPL v2.1 or MPL v1.1
 Group:		Libraries
 Source0:	http://nice.freedesktop.org/releases/%{name}-%{version}.tar.gz
-# Source0-md5:	315c457b092980a4a9a0bea9f0723cce
+# Source0-md5:	8bf9a134850f02cde7eea8514062e23b
 URL:		http://nice.freedesktop.org/
 BuildRequires:	autoconf >= 2.60
 BuildRequires:	automake
@@ -101,7 +101,6 @@ Wtyczka źródła ICE dla GStreamera.
 %setup -q
 
 %build
-mkdir m4
 %{__gtkdocize}
 %{__libtoolize}
 %{__aclocal}
@@ -109,6 +108,7 @@ mkdir m4
 %{__autoheader}
 %{__automake}
 %configure \
+	--enable-compile-warnings \
 	--disable-silent-rules \
 	--enable-gtk-doc \
 	--with-html-dir=%{_gtkdocdir} \
