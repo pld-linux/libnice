@@ -1,24 +1,25 @@
 Summary:	The GLib ICE (Interactive Connectivity Establishment) implementation
 Summary(pl.UTF-8):	Implementacja ICE (Interactive Connectivity Establishment) oparta o GLib
 Name:		libnice
-Version:	0.1.7
+Version:	0.1.8
 Release:	1
 License:	LGPL v2.1 or MPL v1.1
 Group:		Libraries
 Source0:	http://nice.freedesktop.org/releases/%{name}-%{version}.tar.gz
-# Source0-md5:	ed74abea19b3f049baf095f137388f2a
+# Source0-md5:	3042d1c3281d098ef1b98d01479b4192
 URL:		http://nice.freedesktop.org/
-BuildRequires:	autoconf >= 2.60
-BuildRequires:	automake
+BuildRequires:	autoconf >= 2.62
+BuildRequires:	automake >= 1:1.12
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	glib2-devel >= 1:2.30
+BuildRequires:	gobject-introspection-devel >= 1.30.0
 BuildRequires:	gstreamer-devel >= 1.0.0
 BuildRequires:	gtk-doc >= 1.9
-BuildRequires:	gupnp-igd-devel >= 0.1.2
+BuildRequires:	gupnp-igd-devel >= 0.2.4
 BuildRequires:	libtool >= 2:2
 BuildRequires:	pkgconfig
 Requires:	glib2 >= 1:2.30
-Requires:	gupnp-igd >= 0.1.2
+Requires:	gupnp-igd >= 0.2.4
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -52,7 +53,7 @@ Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki libnice
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.30
-Requires:	gupnp-igd-devel >= 0.1.2
+Requires:	gupnp-igd-devel >= 0.2.4
 
 %description devel
 Header files for libnice library.
@@ -109,8 +110,8 @@ Wtyczka źródła ICE dla GStreamera.
 %{__automake}
 %configure \
 	--enable-compile-warnings \
-	--disable-silent-rules \
 	--enable-gtk-doc \
+	--disable-silent-rules \
 	--with-html-dir=%{_gtkdocdir} \
 	--without-gstreamer-0.10
 
@@ -124,6 +125,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/gstreamer-1.0/*.{a,la}
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
+%{__rm} $RPM_BUILD_ROOT%{_bindir}/{sdp,simple,threaded}-example
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -138,12 +140,14 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/stund
 %attr(755,root,root) %{_libdir}/libnice.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libnice.so.10
+%{_libdir}/girepository-1.0/Nice-0.1.typelib
 
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libnice.so
 %{_includedir}/nice
 %{_includedir}/stun
+%{_datadir}/gir-1.0/Nice-0.1.gir
 %{_pkgconfigdir}/nice.pc
 
 %files static
