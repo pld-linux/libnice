@@ -1,12 +1,16 @@
+#
+# Conditional build:
+%bcond_without	static_libs	# static library
+#
 Summary:	The GLib ICE (Interactive Connectivity Establishment) implementation
 Summary(pl.UTF-8):	Implementacja ICE (Interactive Connectivity Establishment) oparta o GLib
 Name:		libnice
-Version:	0.1.10
-Release:	2
+Version:	0.1.12
+Release:	1
 License:	LGPL v2.1 or MPL v1.1
 Group:		Libraries
 Source0:	http://nice.freedesktop.org/releases/%{name}-%{version}.tar.gz
-# Source0-md5:	27b62d0093ce29a39df1c6fcf0bb4396
+# Source0-md5:	c822beb47bbab1f861c857e85e28e573
 URL:		http://nice.freedesktop.org/
 BuildRequires:	autoconf >= 2.62
 BuildRequires:	automake >= 1:1.12
@@ -16,7 +20,7 @@ BuildRequires:	gobject-introspection-devel >= 1.30.0
 BuildRequires:	gstreamer-devel >= 1.0.0
 BuildRequires:	gtk-doc >= 1.9
 BuildRequires:	gupnp-igd-devel >= 0.2.4
-BuildRequires:	libtool >= 2:2
+BuildRequires:	libtool >= 2:2.2.6
 BuildRequires:	pkgconfig
 Requires:	glib2 >= 1:2.30
 Requires:	gupnp-igd >= 0.2.4
@@ -112,6 +116,7 @@ Wtyczka źródła ICE dla GStreamera.
 	--enable-compile-warnings \
 	--enable-gtk-doc \
 	--disable-silent-rules \
+	%{?with_static_libs:--enable-static} \
 	--with-html-dir=%{_gtkdocdir} \
 	--without-gstreamer-0.10
 
@@ -123,8 +128,11 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/gstreamer-1.0/*.{a,la}
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la \
+	$RPM_BUILD_ROOT%{_libdir}/gstreamer-1.0/*.la
+%if %{with static_libs}
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/gstreamer-1.0/*.a
+%endif
 %{__rm} $RPM_BUILD_ROOT%{_bindir}/{sdp,simple,threaded}-example
 
 %clean
@@ -150,9 +158,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/gir-1.0/Nice-0.1.gir
 %{_pkgconfigdir}/nice.pc
 
+%if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libnice.a
+%endif
 
 %files apidocs
 %defattr(644,root,root,755)
