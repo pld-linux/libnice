@@ -1,12 +1,12 @@
 #
 # Conditional build:
 %bcond_without	static_libs	# static library
-#
+
 Summary:	The GLib ICE (Interactive Connectivity Establishment) implementation
 Summary(pl.UTF-8):	Implementacja ICE (Interactive Connectivity Establishment) oparta o GLib
 Name:		libnice
 Version:	0.1.13
-Release:	1
+Release:	2
 License:	LGPL v2.1 or MPL v1.1
 Group:		Libraries
 Source0:	http://nice.freedesktop.org/releases/%{name}-%{version}.tar.gz
@@ -40,8 +40,8 @@ Protocol (SIP) and Jingle, XMPP extension for audio/video calls.
 
 %description -l pl.UTF-8
 libnice to implementacja standardu ICE (Interactive Connectivity
-Establishment) wg szkicu IETF. Udostępnia bibliotekę opartą na
-GLibie oraz elementy GStreamera.
+Establishment) wg szkicu IETF. Udostępnia bibliotekę opartą na GLibie
+oraz elementy GStreamera.
 
 ICE służy aplikacjom chcącym tworzyć strumienie danych UDP
 peer-to-peer. Automatyzuje proces przechodzenia przez NAT i
@@ -82,6 +82,9 @@ Summary:	libnice library API documentation
 Summary(pl.UTF-8):	Dokumentacja API biblioteki libnice
 Group:		Documentation
 Requires:	gtk-doc-common
+%if "%{_rpmversion}" >= "5"
+BuildArch:	noarch
+%endif
 
 %description apidocs
 libnice library API documentation.
