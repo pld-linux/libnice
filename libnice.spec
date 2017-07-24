@@ -9,9 +9,9 @@ Version:	0.1.14
 Release:	2
 License:	LGPL v2.1 or MPL v1.1
 Group:		Libraries
-Source0:	http://nice.freedesktop.org/releases/%{name}-%{version}.tar.gz
+Source0:	https://nice.freedesktop.org/releases/%{name}-%{version}.tar.gz
 # Source0-md5:	c9b9b74b8ae1b3890e4bd93f1b70e8ff
-URL:		http://nice.freedesktop.org/
+URL:		https://nice.freedesktop.org/
 BuildRequires:	autoconf >= 2.62
 BuildRequires:	automake >= 1:1.12
 BuildRequires:	docbook-dtd412-xml
@@ -24,6 +24,7 @@ BuildRequires:	gupnp-igd-devel >= 0.2.4
 BuildRequires:	libtool >= 2:2.2.6
 BuildRequires:	pkgconfig
 Requires:	glib2 >= 1:2.44
+Requires:	gnutls-libs >= 2.12
 Requires:	gupnp-igd >= 0.2.4
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -58,6 +59,7 @@ Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki libnice
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.44
+Requires:	gnutls-devel >= 2.12
 Requires:	gupnp-igd-devel >= 0.2.4
 
 %description devel
@@ -112,7 +114,7 @@ Wtyczka źródła ICE dla GStreamera.
 %build
 %{__gtkdocize}
 %{__libtoolize}
-%{__aclocal}
+%{__aclocal} -I m4
 %{__autoconf}
 %{__autoheader}
 %{__automake}
