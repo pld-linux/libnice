@@ -5,13 +5,13 @@
 Summary:	The GLib ICE (Interactive Connectivity Establishment) implementation
 Summary(pl.UTF-8):	Implementacja ICE (Interactive Connectivity Establishment) oparta o GLib
 Name:		libnice
-Version:	0.1.15
+Version:	0.1.16
 Release:	1
 License:	LGPL v2.1 or MPL v1.1
 Group:		Libraries
-Source0:	https://nice.freedesktop.org/releases/%{name}-%{version}.tar.gz
-# Source0-md5:	5f58f305d23158651ab509b25420d353
-URL:		https://nice.freedesktop.org/
+Source0:	https://libnice.freedesktop.org/releases/%{name}-%{version}.tar.gz
+# Source0-md5:	5ad936c43d3c6d33117b2c64982f2fd9
+URL:		https://libnice.freedesktop.org/
 BuildRequires:	autoconf >= 2.62
 BuildRequires:	automake >= 1:1.12
 BuildRequires:	docbook-dtd412-xml
@@ -19,7 +19,7 @@ BuildRequires:	glib2-devel >= 1:2.48
 BuildRequires:	gnutls-devel >= 2.12
 BuildRequires:	gobject-introspection-devel >= 1.30.0
 BuildRequires:	gstreamer-devel >= 1.0.0
-BuildRequires:	gtk-doc >= 1.9
+BuildRequires:	gtk-doc >= 1.10
 BuildRequires:	gupnp-igd-devel >= 0.2.4
 BuildRequires:	libtool >= 2:2.2.6
 BuildRequires:	pkgconfig
