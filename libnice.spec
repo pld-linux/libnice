@@ -5,17 +5,18 @@
 Summary:	The GLib ICE (Interactive Connectivity Establishment) implementation
 Summary(pl.UTF-8):	Implementacja ICE (Interactive Connectivity Establishment) oparta o GLib
 Name:		libnice
-Version:	0.1.16
+Version:	0.1.17
 Release:	1
 License:	LGPL v2.1 or MPL v1.1
 Group:		Libraries
+#Source0Download: https://libnice.freedesktop.org/#download
 Source0:	https://libnice.freedesktop.org/releases/%{name}-%{version}.tar.gz
-# Source0-md5:	5ad936c43d3c6d33117b2c64982f2fd9
+# Source0-md5:	0a6a8215013f1b8631fac8027e9ed90d
 URL:		https://libnice.freedesktop.org/
 BuildRequires:	autoconf >= 2.62
 BuildRequires:	automake >= 1:1.12
 BuildRequires:	docbook-dtd412-xml
-BuildRequires:	glib2-devel >= 1:2.48
+BuildRequires:	glib2-devel >= 1:2.54
 BuildRequires:	gnutls-devel >= 2.12
 BuildRequires:	gobject-introspection-devel >= 1.30.0
 BuildRequires:	gstreamer-devel >= 1.0.0
@@ -23,7 +24,7 @@ BuildRequires:	gtk-doc >= 1.10
 BuildRequires:	gupnp-igd-devel >= 0.2.4
 BuildRequires:	libtool >= 2:2.2.6
 BuildRequires:	pkgconfig
-Requires:	glib2 >= 1:2.48
+Requires:	glib2 >= 1:2.54
 Requires:	gnutls-libs >= 2.12
 Requires:	gupnp-igd >= 0.2.4
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -58,7 +59,7 @@ Summary:	Header files for libnice library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki libnice
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.48
+Requires:	glib2-devel >= 1:2.54
 Requires:	gnutls-devel >= 2.12
 Requires:	gupnp-igd-devel >= 0.2.4
 
@@ -85,7 +86,7 @@ Summary:	libnice library API documentation
 Summary(pl.UTF-8):	Dokumentacja API biblioteki libnice
 Group:		Documentation
 Requires:	gtk-doc-common
-%if "%{_rpmversion}" >= "5"
+%if "%{_rpmversion}" >= "4.6"
 BuildArch:	noarch
 %endif
 
