@@ -86,9 +86,7 @@ Summary:	libnice library API documentation
 Summary(pl.UTF-8):	Dokumentacja API biblioteki libnice
 Group:		Documentation
 Requires:	gtk-doc-common
-%if "%{_rpmversion}" >= "4.6"
 BuildArch:	noarch
-%endif
 
 %description apidocs
 libnice library API documentation.
