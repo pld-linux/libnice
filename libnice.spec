@@ -5,16 +5,14 @@
 Summary:	The GLib ICE (Interactive Connectivity Establishment) implementation
 Summary(pl.UTF-8):	Implementacja ICE (Interactive Connectivity Establishment) oparta o GLib
 Name:		libnice
-Version:	0.1.17
+Version:	0.1.18
 Release:	1
 License:	LGPL v2.1 or MPL v1.1
 Group:		Libraries
 #Source0Download: https://libnice.freedesktop.org/#download
 Source0:	https://libnice.freedesktop.org/releases/%{name}-%{version}.tar.gz
-# Source0-md5:	0a6a8215013f1b8631fac8027e9ed90d
+# Source0-md5:	408482fa4bab7c6b884b0fb9ad57a038
 URL:		https://libnice.freedesktop.org/
-BuildRequires:	autoconf >= 2.62
-BuildRequires:	automake >= 1:1.12
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	glib2-devel >= 1:2.54
 BuildRequires:	gnutls-devel >= 2.12
@@ -22,8 +20,11 @@ BuildRequires:	gobject-introspection-devel >= 1.30.0
 BuildRequires:	gstreamer-devel >= 1.0.0
 BuildRequires:	gtk-doc >= 1.10
 BuildRequires:	gupnp-igd-devel >= 0.2.4
-BuildRequires:	libtool >= 2:2.2.6
+BuildRequires:	meson >= 0.52
+BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig
+BuildRequires:	rpm-build >= 4.6
+BuildRequires:	rpmbuild(macros) >= 1.736
 Requires:	glib2 >= 1:2.54
 Requires:	gnutls-libs >= 2.12
 Requires:	gupnp-igd >= 0.2.4
@@ -111,32 +112,21 @@ Wtyczka źródła ICE dla GStreamera.
 %setup -q
 
 %build
-%{__gtkdocize}
-%{__libtoolize}
-%{__aclocal} -I m4
-%{__autoconf}
-%{__autoheader}
-%{__automake}
-%configure \
-	--enable-compile-warnings \
-	--enable-gtk-doc \
-	--disable-silent-rules \
-	%{?with_static_libs:--enable-static} \
-	--with-html-dir=%{_gtkdocdir} \
-	--without-gstreamer-0.10
+%meson build \
+	%{!?with_static_libs:--default-library=shared} \
+	-Dgtk_doc=enabled
 
-%{__make}
+%ninja_build -C build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
+%ninja_install -C build
 
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la \
-	$RPM_BUILD_ROOT%{_libdir}/gstreamer-1.0/*.la
 %if %{with static_libs}
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/gstreamer-1.0/*.a
+# no static gst plugin
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/gstreamer-1.0/libgstnice.a
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/gstreamer-1.0/pkgconfig/gstnice.pc
 %endif
 
 %clean
@@ -147,7 +137,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS COPYING ChangeLog NEWS README TODO
+%doc AUTHORS COPYING NEWS README TODO
 %attr(755,root,root) %{_bindir}/stunbdc
 %attr(755,root,root) %{_bindir}/stund
 %attr(755,root,root) %{_libdir}/libnice.so.*.*.*
