@@ -5,13 +5,13 @@
 Summary:	The GLib ICE (Interactive Connectivity Establishment) implementation
 Summary(pl.UTF-8):	Implementacja ICE (Interactive Connectivity Establishment) oparta o GLib
 Name:		libnice
-Version:	0.1.18
+Version:	0.1.21
 Release:	1
 License:	LGPL v2.1 or MPL v1.1
 Group:		Libraries
 #Source0Download: https://libnice.freedesktop.org/#download
 Source0:	https://libnice.freedesktop.org/releases/%{name}-%{version}.tar.gz
-# Source0-md5:	408482fa4bab7c6b884b0fb9ad57a038
+# Source0-md5:	fe43ff9ed4db2ecbb2d480c670bee855
 URL:		https://libnice.freedesktop.org/
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	glib2-devel >= 1:2.54
