@@ -17,6 +17,7 @@ BuildRequires:	docbook-dtd412-xml
 BuildRequires:	glib2-devel >= 1:2.54
 BuildRequires:	gnutls-devel >= 2.12
 BuildRequires:	gobject-introspection-devel >= 1.30.0
+BuildRequires:	graphviz
 BuildRequires:	gstreamer-devel >= 1.0.0
 BuildRequires:	gtk-doc >= 1.10
 BuildRequires:	gupnp-igd-devel >= 0.2.4
