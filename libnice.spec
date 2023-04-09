@@ -1,5 +1,6 @@
 #
 # Conditional build:
+%bcond_without	apidocs		# API documentation
 %bcond_without	static_libs	# static library
 
 Summary:	The GLib ICE (Interactive Connectivity Establishment) implementation
@@ -13,13 +14,13 @@ Group:		Libraries
 Source0:	https://libnice.freedesktop.org/releases/%{name}-%{version}.tar.gz
 # Source0-md5:	fe43ff9ed4db2ecbb2d480c670bee855
 URL:		https://libnice.freedesktop.org/
-BuildRequires:	docbook-dtd412-xml
+%{?with_apidocs:BuildRequires:	docbook-dtd412-xml}
 BuildRequires:	glib2-devel >= 1:2.54
 BuildRequires:	gnutls-devel >= 2.12
 BuildRequires:	gobject-introspection-devel >= 1.30.0
-BuildRequires:	graphviz
+%{?with_apidocs:BuildRequires:	graphviz}
 BuildRequires:	gstreamer-devel >= 1.0.0
-BuildRequires:	gtk-doc >= 1.10
+%{?with_apidocs:BuildRequires:	gtk-doc >= 1.10}
 BuildRequires:	gupnp-igd-devel >= 0.2.4
 BuildRequires:	meson >= 0.52
 BuildRequires:	ninja >= 1.5
@@ -115,7 +116,7 @@ Wtyczka źródła ICE dla GStreamera.
 %build
 %meson build \
 	%{!?with_static_libs:--default-library=shared} \
-	-Dgtk_doc=enabled
+	-Dgtk_doc=%{__enabled_disabled apidocs gtk_doc}
 
 %ninja_build -C build
 
@@ -159,9 +160,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libnice.a
 %endif
 
+%if %{with apidocs}
 %files apidocs
 %defattr(644,root,root,755)
 %{_gtkdocdir}/libnice
+%endif
 
 %files -n gstreamer-nice
 %defattr(644,root,root,755)
