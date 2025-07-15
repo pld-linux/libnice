@@ -114,16 +114,16 @@ Wtyczka źródła ICE dla GStreamera.
 %setup -q
 
 %build
-%meson build \
+%meson \
 	%{!?with_static_libs:--default-library=shared} \
 	-Dgtk_doc=%{__enabled_disabled apidocs gtk_doc}
 
-%ninja_build -C build
+%meson_build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%ninja_install -C build
+%meson_install
 
 %if %{with static_libs}
 # no static gst plugin
