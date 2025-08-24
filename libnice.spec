@@ -26,7 +26,7 @@ BuildRequires:	meson >= 0.52
 BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-build >= 4.6
-BuildRequires:	rpmbuild(macros) >= 1.736
+BuildRequires:	rpmbuild(macros) >= 2.042
 Requires:	glib2 >= 1:2.54
 Requires:	gnutls-libs >= 2.12
 Requires:	gupnp-igd >= 0.2.4
